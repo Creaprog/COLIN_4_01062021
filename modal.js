@@ -56,10 +56,10 @@ function checkNbCharacterFirst() {
   var elem = document.getElementById("first");
   if (elem.value.length < 2) {
     document.querySelector(".error-first").style.display = "block";
-    return true;
+    return false;
     } else {
       document.querySelector(".error-first").style.display = "none";
-      return false;
+      return true;
   }
 }
 
@@ -67,8 +67,10 @@ function checkNbCharacterLast() {
   var elem = document.getElementById("last");
   if (elem.value.length < 2) {
     document.querySelector(".error-last").style.display = "block";
+      return false;
     } else {
       document.querySelector(".error-last").style.display = "none";
+      return true;
   }
 }
 
@@ -76,10 +78,10 @@ function checkNbCharacterEmail() {
   var elem = document.getElementById("email");
   if (elem.value.indexOf("@") === -1) {
     document.querySelector(".error-email").style.display = "block";
-    return true;
+    return false;
     } else {
       document.querySelector(".error-email").style.display = "none";
-      return false;
+      return true;
   }
 }
 
@@ -87,10 +89,10 @@ function checkNbCharacterDate() {
   var elem = document.getElementById("birthdate");
   if (elem.value.length === 0) {
     document.querySelector(".error-date").style.display = "block";
-    return true;
+    return false;
     } else {
       document.querySelector(".error-date").style.display = "none";
-      return false;
+      return true;
   }
 }
 
@@ -98,26 +100,33 @@ function checkNbCharacterQuantity() {
   var elem = document.getElementById("quantity");
   if (elem.value.length === 0) {
     document.querySelector(".error-quantity").style.display = "block";
-    return true;
+    return false;
     } else {
       document.querySelector(".error-quantity").style.display = "none";
-      return false;
+      return true;
   }
 }
 
 function CheckCGU() {
-  // var elem = document.querySelectorAll(".checkbox2-label");
-  // console.log(elem[0].value);
+  var elem = document.getElementById("checkbox1");
+  if (elem.checked) {
+    return true;
+  } else {
+    return false;
+  }
 }
 
 function validate(e) {
+  checkBoxes();
   checkNbCharacterFirst();
   checkNbCharacterLast();
   checkNbCharacterEmail();
   checkNbCharacterDate();
   checkNbCharacterQuantity();
   CheckCGU();
-  if (checkBoxes()) {
+  if (checkBoxes() && checkNbCharacterFirst() && checkNbCharacterLast() 
+        && checkNbCharacterEmail() && checkNbCharacterDate()
+        && checkNbCharacterQuantity() && CheckCGU()) {
     //Form validate
     modalForm.style.display = "none";
     thanks.style.display = "block";
@@ -125,6 +134,7 @@ function validate(e) {
     formValidate = 1;
     e.preventDefault();
     return true;
+  } else {
   }
   return false;
 }
