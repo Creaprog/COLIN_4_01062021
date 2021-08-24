@@ -98,7 +98,7 @@ function checkNbCharacterDate() {
 
 function checkNbCharacterQuantity() {
   var elem = document.getElementById("quantity");
-  if (elem.value.length === 0) {
+  if (elem.value.length === 0 || elem.value.search(/^[0-9]*$/)) {
     document.querySelector(".error-quantity").style.display = "block";
     return false;
     } else {
