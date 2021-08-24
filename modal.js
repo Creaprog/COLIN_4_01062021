@@ -54,10 +54,10 @@ function checkBoxes() {
 
 function checkNbCharacterFirst() {
   var elem = document.getElementById("first");
-  if (elem.value.length < 2) {
+  if (elem.value.length < 2 || elem.value.search(/^[a-zA-Z]*$/)) {
     document.querySelector(".error-first").style.display = "block";
     return false;
-    } else {
+  } else {
       document.querySelector(".error-first").style.display = "none";
       return true;
   }
@@ -65,10 +65,10 @@ function checkNbCharacterFirst() {
 
 function checkNbCharacterLast() {
   var elem = document.getElementById("last");
-  if (elem.value.length < 2) {
+  if (elem.value.length < 2 || elem.value.search(/^[a-zA-Z]*$/)) {
     document.querySelector(".error-last").style.display = "block";
       return false;
-    } else {
+  } else {
       document.querySelector(".error-last").style.display = "none";
       return true;
   }
@@ -76,7 +76,7 @@ function checkNbCharacterLast() {
 
 function checkNbCharacterEmail() {
   var elem = document.getElementById("email");
-  if (elem.value.indexOf("@") === -1) {
+  if (elem.value.indexOf("@") === -1 || elem.value.search(/^\S+@\S+\.\S+$/)) {
     document.querySelector(".error-email").style.display = "block";
     return false;
     } else {
@@ -117,13 +117,6 @@ function CheckCGU() {
 }
 
 function validate(e) {
-  checkBoxes();
-  checkNbCharacterFirst();
-  checkNbCharacterLast();
-  checkNbCharacterEmail();
-  checkNbCharacterDate();
-  checkNbCharacterQuantity();
-  CheckCGU();
   if (checkBoxes() && checkNbCharacterFirst() && checkNbCharacterLast() 
         && checkNbCharacterEmail() && checkNbCharacterDate()
         && checkNbCharacterQuantity() && CheckCGU()) {
